@@ -11,12 +11,14 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var distanceTraveledLabel: UILabel!
     
+    @IBOutlet weak var startTrackingButton: UIButton!
     
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
     //var startDate: Date!
     var distanceTraveledThisTrip: Double = 0
+    var numMeasurements = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +28,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func startLocationTrackingButton(_ sender: Any) {
         startLocationManager()
+        startTrackingButton.isEnabled = false
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
         
-        if lastLocation != nil {
+        // skip the first few measurements to avoid getting bad data
+        if (lastLocation != nil) && (numMeasurements > 2) {
         
             if let location = locations.last {
                 
-                distanceTraveledThisTrip += ((lastLocation.distance(from: location))/1000.0);
-                distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
+                let distanceMoved = ((lastLocation.distance(from: location))/1000.0)
+                if (distanceMoved > 15){
+                    distanceTraveledThisTrip += distanceMoved
+                    distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
+                }
                 
             }
         }
         
+        
+        if (numMeasurements < 3){
+            numMeasurements += 1;
+        }
         lastLocation = locations.last!
         print(lastLocation.coordinate)
     }
@@ -59,6 +70,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
+        
+        // i only need updates for distance changes of more than 25 meters
+        locationManager.distanceFilter = 25
         locationManager.startUpdatingLocation()
         
     }
