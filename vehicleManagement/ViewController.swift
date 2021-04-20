@@ -2,30 +2,30 @@
 //  ViewController.swift
 //  vehicleManagement
 //
-//  Created by Cody Anderson on 4/18/21.
+//  Created by Cody Anderson and Lucas Duff on 4/18/21.
 //
 
 import UIKit
 import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-
+    @IBOutlet weak var distanceTraveledLabel: UILabel!
+    
+    
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
     //var startDate: Date!
     var distanceTraveledThisTrip: Double = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello  bob")
-        print("hello again bob!")
-        startLocationManager()
         // Do any additional setup after loading the view.
-        
-        
-        
+    }
+    
+    
+    @IBAction func startLocationTrackingButton(_ sender: Any) {
+        startLocationManager()
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
@@ -34,8 +34,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
             if let location = locations.last {
                 
-                distanceTraveledThisTrip += lastLocation.distance(from: location);
-                print("Distance Traveled: " + String(distanceTraveledThisTrip))
+                distanceTraveledThisTrip += ((lastLocation.distance(from: location))/1000.0);
+                distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
                 
             }
         }
