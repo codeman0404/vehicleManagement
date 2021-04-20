@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4871E85262F548100628EAE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4871E84262F548100628EAE /* LoginViewController.swift */; };
 		D4C81A19262CF31C000C5774 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81A18262CF31C000C5774 /* AppDelegate.swift */; };
 		D4C81A1B262CF31C000C5774 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81A1A262CF31C000C5774 /* SceneDelegate.swift */; };
 		D4C81A1D262CF31C000C5774 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81A1C262CF31C000C5774 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D4871E84262F548100628EAE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D4C81A15262CF31C000C5774 /* vehicleManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vehicleManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C81A18262CF31C000C5774 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4C81A1A262CF31C000C5774 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				D4C81A18262CF31C000C5774 /* AppDelegate.swift */,
 				D4C81A1A262CF31C000C5774 /* SceneDelegate.swift */,
 				D4C81A1C262CF31C000C5774 /* ViewController.swift */,
+				D4871E84262F548100628EAE /* LoginViewController.swift */,
 				D4C81A1E262CF31C000C5774 /* Main.storyboard */,
 				D4C81A24262CF31C000C5774 /* Assets.xcassets */,
 				D4C81A26262CF31C000C5774 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 				D4C81A1D262CF31C000C5774 /* ViewController.swift in Sources */,
 				D4C81A19262CF31C000C5774 /* AppDelegate.swift in Sources */,
 				D4C81A1B262CF31C000C5774 /* SceneDelegate.swift in Sources */,
+				D4871E85262F548100628EAE /* LoginViewController.swift in Sources */,
 				D4C81A23262CF31C000C5774 /* vehicleManagement.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

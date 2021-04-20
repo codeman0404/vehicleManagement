@@ -38,9 +38,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
             if let location = locations.last {
                 
-                let distanceMoved = ((lastLocation.distance(from: location))/1000.0)
+                let distanceMoved = lastLocation.distance(from: location)
                 if (distanceMoved > 15){
-                    distanceTraveledThisTrip += distanceMoved
+                    distanceTraveledThisTrip += distanceMoved/1000.0
                     distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
                 }
                 
@@ -71,9 +71,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
-        // i only need updates for distance changes of more than 25 meters
-        locationManager.distanceFilter = 25
         locationManager.startUpdatingLocation()
+        locationManager.distanceFilter = 25
         
     }
     
