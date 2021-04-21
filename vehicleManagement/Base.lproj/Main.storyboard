@@ -54,17 +54,28 @@
                                     <segue destination="3r4-TR-n25" kind="presentation" id="xhm-Wh-GlW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-rZ-7hO">
+                                <rect key="frame" x="53" y="62" width="308" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="308" id="Zlp-Bw-fcx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hc4-iV-v2F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ojn-jS-Hwi" firstAttribute="top" secondItem="FsV-om-ifZ" secondAttribute="bottom" constant="8" symbolic="YES" id="24h-bD-ROC"/>
                             <constraint firstItem="FsV-om-ifZ" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="3DL-Vg-zBk"/>
+                            <constraint firstItem="9BJ-rZ-7hO" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="C28-K4-HIJ"/>
                             <constraint firstItem="rZW-An-88N" firstAttribute="top" secondItem="hVu-3B-bND" secondAttribute="bottom" constant="8" symbolic="YES" id="CYJ-7a-uDv"/>
                             <constraint firstItem="hVu-3B-bND" firstAttribute="top" secondItem="CZI-vJ-V0o" secondAttribute="bottom" constant="8" symbolic="YES" id="NJ8-Py-iK5"/>
                             <constraint firstItem="hVu-3B-bND" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="OYc-rv-qpW"/>
                             <constraint firstItem="hVu-3B-bND" firstAttribute="top" secondItem="CZI-vJ-V0o" secondAttribute="bottom" constant="8" symbolic="YES" id="XdX-Yc-hwt"/>
                             <constraint firstItem="ojn-jS-Hwi" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="Z5d-68-dzz"/>
+                            <constraint firstItem="9BJ-rZ-7hO" firstAttribute="top" secondItem="hc4-iV-v2F" secondAttribute="top" constant="18" id="aDh-6q-WJ2"/>
                             <constraint firstItem="CZI-vJ-V0o" firstAttribute="top" secondItem="ojn-jS-Hwi" secondAttribute="bottom" constant="8" symbolic="YES" id="bJt-h9-fQw"/>
                             <constraint firstItem="CZI-vJ-V0o" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="ego-UR-i7B"/>
                             <constraint firstItem="rZW-An-88N" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="fxy-p3-EYg"/>
@@ -72,6 +83,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="notificationLabel" destination="9BJ-rZ-7hO" id="oN5-eR-DUN"/>
                         <outlet property="passwordTextField" destination="ojn-jS-Hwi" id="o2m-7A-qcB"/>
                         <outlet property="userNameTextField" destination="FsV-om-ifZ" id="jOY-Xy-f1T"/>
                         <outlet property="vehicleUsedTextField" destination="CZI-vJ-V0o" id="ifL-Jd-SmO"/>
@@ -81,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sBG-uh-tuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="48"/>
+            <point key="canvasLocation" x="1076.8115942028987" y="47.544642857142854"/>
         </scene>
         <!--distanceViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -166,10 +178,12 @@
                                     <action selector="registerNewAccount:" destination="3r4-TR-n25" eventType="touchUpInside" id="YO9-Yi-U2J"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsR-cA-CgT">
-                                <rect key="frame" x="186" y="34" width="55" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsR-cA-CgT">
+                                <rect key="frame" x="47" y="34" width="320" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="OE7-LQ-kSZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -179,19 +193,22 @@
                         <constraints>
                             <constraint firstItem="Nkp-FK-gAZ" firstAttribute="centerY" secondItem="tTS-bC-fwB" secondAttribute="centerY" id="6JS-wo-hx3"/>
                             <constraint firstItem="xRa-lV-gw2" firstAttribute="centerX" secondItem="tTS-bC-fwB" secondAttribute="centerX" id="SZ4-LN-SaK"/>
+                            <constraint firstItem="qsR-cA-CgT" firstAttribute="top" secondItem="SdJ-eo-muU" secondAttribute="top" constant="34" id="VfU-zV-MBR"/>
                             <constraint firstItem="W1v-If-Rgs" firstAttribute="centerX" secondItem="tTS-bC-fwB" secondAttribute="centerX" id="ZTl-2k-Wox"/>
                             <constraint firstItem="7u1-4g-oBC" firstAttribute="top" secondItem="Nkp-FK-gAZ" secondAttribute="bottom" constant="11" id="fHG-Ch-uE1"/>
                             <constraint firstItem="7u1-4g-oBC" firstAttribute="centerX" secondItem="tTS-bC-fwB" secondAttribute="centerX" id="jw7-hY-FXe"/>
                             <constraint firstItem="Nkp-FK-gAZ" firstAttribute="centerX" secondItem="tTS-bC-fwB" secondAttribute="centerX" id="kgi-87-N68"/>
                             <constraint firstItem="xRa-lV-gw2" firstAttribute="top" secondItem="7u1-4g-oBC" secondAttribute="bottom" constant="8" symbolic="YES" id="qzk-4N-ZdV"/>
+                            <constraint firstItem="qsR-cA-CgT" firstAttribute="centerX" secondItem="tTS-bC-fwB" secondAttribute="centerX" id="tIf-Fk-qY9"/>
                             <constraint firstItem="Nkp-FK-gAZ" firstAttribute="top" secondItem="W1v-If-Rgs" secondAttribute="bottom" constant="11" id="zAL-Ti-vD6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="7u1-4g-oBC" id="ejU-1k-Mwn"/>
+                        <outlet property="notificationLabel" destination="qsR-cA-CgT" id="Hes-0n-CYP"/>
                         <outlet property="passwordTextField" destination="Nkp-FK-gAZ" id="xzv-4v-QUQ"/>
                         <outlet property="userNameTextField" destination="W1v-If-Rgs" id="XNR-0U-OCj"/>
-                        <segue destination="PQE-ra-4Fe" kind="presentation" modalPresentationStyle="fullScreen" id="XgJ-Fg-DYw"/>
+                        <segue destination="PQE-ra-4Fe" kind="presentation" identifier="returnToLogin" modalPresentationStyle="fullScreen" id="XgJ-Fg-DYw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYT-XI-u5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

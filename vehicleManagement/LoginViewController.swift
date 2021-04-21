@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private let database = Database.database().reference()
     
     
-    
+    @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var vehicleUsedTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -57,12 +57,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     
                                 } else {
                                     
-                                    print("error logging in")
+                                    self.notificationLabel.text = "incorrect username or password"
                                 }
                             }
                         } else {
                             
-                            print("username did not exist")
+                            DispatchQueue.main.async {
+                                self.notificationLabel.text = "incorrect username or password"
+                            }
                             
                         }
                     }

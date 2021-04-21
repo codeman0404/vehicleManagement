@@ -13,7 +13,7 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
     
     private let database = Database.database().reference()
     
-    
+    @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -37,11 +37,13 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
                                 
                             } else if snapshot.exists() {
                                 
-                                print("username already exists...")
+                                DispatchQueue.main.async {
+                                    
+                                    self.notificationLabel.text = "This username is already taken..."
+                                    
+                                }
                                 
                             } else {
-                                
-                                print("username did not exist")
                                 
                                 // hash password and compare it agianst the password stored in firebase
                                 let passwordData = Data(password.utf8)
@@ -62,8 +64,22 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
                                 
                                 self.database.child("accounts").child(String(userName)).setValue(object)
                                 
+                                DispatchQueue.main.async {
+                                    
+                                    self.performSegue(withIdentifier: "returnToLogin", sender: self)
+                                    
+                                }
+                                
                                 
                             }
+                        }
+                        
+                    } else {
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.notificationLabel.text = "password fields must match"
+                            
                         }
                         
                     }
