@@ -166,6 +166,13 @@
                                     <action selector="registerNewAccount:" destination="3r4-TR-n25" eventType="touchUpInside" id="YO9-Yi-U2J"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsR-cA-CgT">
+                                <rect key="frame" x="186" y="34" width="55" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SdJ-eo-muU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -189,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYT-XI-u5c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="-793"/>
+            <point key="canvasLocation" x="1076.8115942028987" y="-793.52678571428567"/>
         </scene>
     </scenes>
     <resources>
