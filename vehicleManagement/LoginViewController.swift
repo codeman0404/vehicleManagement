@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    private let database = Database.database().reference()
     
     @IBOutlet weak var vehicleUsedTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -15,6 +18,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func login(_ sender: Any) {
+        
+        database.child("randomEntry").setValue(10)
         
         if let userName = userNameTextField.text {
             
