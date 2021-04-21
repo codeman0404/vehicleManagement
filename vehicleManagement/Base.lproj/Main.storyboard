@@ -30,7 +30,7 @@
                                     <constraint firstAttribute="width" constant="153" id="4YI-1S-RLe"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UserName" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-om-ifZ">
                                 <rect key="frame" x="130.5" y="389" width="153" height="34"/>
@@ -82,24 +82,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="css-QA-Nqq">
-                                <rect key="frame" x="125" y="433" width="165" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traveled Distance: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcV-zD-aew">
+                                <rect key="frame" x="71.5" y="437.5" width="271" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="271" id="n00-5N-wpV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="css-QA-Nqq">
+                                <rect key="frame" x="124.5" y="467" width="165" height="30"/>
                                 <state key="normal" title="Begin Location Tracking"/>
                                 <connections>
                                     <action selector="startLocationTrackingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kRN-tf-Ent"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Traveled Distance: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcV-zD-aew">
-                                <rect key="frame" x="20" y="404" width="374" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZcV-zD-aew" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9iL-s0-HIR"/>
+                            <constraint firstItem="css-QA-Nqq" firstAttribute="top" secondItem="ZcV-zD-aew" secondAttribute="bottom" constant="8.5" id="Fch-Gt-3xn"/>
+                            <constraint firstItem="ZcV-zD-aew" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vkn-Ps-DYq"/>
+                            <constraint firstItem="css-QA-Nqq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iFo-S2-ONw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wg2-Uq-xD1"/>
                     <connections>
@@ -109,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="54"/>
+            <point key="canvasLocation" x="-597.10144927536237" y="53.571428571428569"/>
         </scene>
     </scenes>
     <resources>
