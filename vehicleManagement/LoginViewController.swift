@@ -19,36 +19,51 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func login(_ sender: Any) {
         
-        database.child("randomEntry").setValue(10)
-        
-        if let userName = userNameTextField.text {
+        database.child("accounts").child("1").getData{ (error, snapshot) in
             
-            if let password = passwordTextField.text {
-                
-                if let vehicle = vehicleUsedTextField.text {
-                    
-                    if (password == "password") && (userName == "Cody" && (vehicle == "vehicle")){
-                        
-                        self.performSegue(withIdentifier: "distanceViewController", sender: self)
-                        
-                    } else {
-                        
-                        print("error logging in")
-                    }
-                    
-                } else {
-                    print("error logging in")
+                if let error = error {
+                    print("Error getting data \(error)")
                 }
-                
-            } else {
-                
-                print("error logging in")
-            }
+                else if snapshot.exists() {
+                    print("Got data \(snapshot.value!)")
+                    
+                    let value = snapshot.value as? NSDictionary
+                    let returnedUsername = value?["username"] as? String ?? ""
+                    let returnedPassword = value?["password"] as? String ?? ""
             
-        } else {
-            print("error loggin  in")
+                    DispatchQueue.main.async {
+                        
+                        if let userName = self.userNameTextField.text {
+                            
+                            if let password = self.passwordTextField.text {
+                                
+                                if let vehicle = self.vehicleUsedTextField.text {
+                                    
+                                    if (password == returnedPassword) && (userName == returnedUsername && (vehicle == "vehicle")){
+                                        
+                                        self.performSegue(withIdentifier: "distanceViewController", sender: self)
+                                        
+                                    } else {
+                                        
+                                        print("error logging in")
+                                    }
+                                    
+                                } else {
+                                    print("error logging in")
+                                }
+                                
+                            } else {
+                                
+                                print("error logging in")
+                            }
+                            
+                        } else {
+                            print("error loggin  in")
+                        }
+                    }
+            
+                }
         }
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
