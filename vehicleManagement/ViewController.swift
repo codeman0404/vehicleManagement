@@ -231,7 +231,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
                  
             if let txCharacteristic = txCharacteristic {
                      
-            bluefruitPeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
+            piPeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
                 }
             }
         }
