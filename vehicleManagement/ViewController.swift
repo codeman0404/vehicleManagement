@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreBluetooth
 
 class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDelegate, CBCentralManagerDelegate  {
     @IBOutlet weak var distanceTraveledLabel: UILabel!
