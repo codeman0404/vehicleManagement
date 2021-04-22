@@ -26,6 +26,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
     private var centralManager: CBCentralManager!
     private var piPeripheral: CBPeripheral!
     
+    private var txCharacteristic: CBCharacteristic!
+    private var rxCharacteristic: CBCharacteristic!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -224,7 +227,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
              
         let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
            
-        if let bluefruitPeripheral = bluefruitPeripheral {
+        if let piPeripheral = piPeripheral {
                  
             if let txCharacteristic = txCharacteristic {
                      
