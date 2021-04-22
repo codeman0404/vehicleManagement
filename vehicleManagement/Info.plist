@@ -8,6 +8,10 @@
 	<string>This application needs to use location services to provide you with usefull diagnostic and fuel prediction information</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This application needs to use location services to provide you with usefull diagnostic and fuel prediction information</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>This application needs to use bluetooth to access the car telemetry data</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>This application needs to use bluetooth to access the car telemetry data</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

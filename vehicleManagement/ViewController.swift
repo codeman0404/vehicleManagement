@@ -13,6 +13,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var startTrackingButton: UIButton!
     
+    let geocoder = CLGeocoder()
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
@@ -47,6 +48,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     distanceTraveledThisTrip += distanceMoved/1000.0
                     distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
                 }
+                
+                // attempt to geocode that coordinate
+              /*  geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+                    if error == nil {
+                        let firstLocation = placemarks?[0]
+                        
+                        print(firstLocation?.country)
+                        print(firstLocation?.locality)
+                        print(firstLocation?.administrativeArea)
+                        print(firstLocation?.thoroughfare)
+                        print(firstLocation?.subThoroughfare)
+                        
+                    }
+                    else {
+                     // An error occurred during geocoding.
+                        
+                    }
+                }) */
                 
             }
         }
