@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDelegate, CBCentralManagerDelegate  {
     @IBOutlet weak var distanceTraveledLabel: UILabel!
     
     @IBOutlet weak var startTrackingButton: UIButton!
@@ -21,6 +21,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var distanceTraveledThisTrip: Double = 0
     var numMeasurements = 0
     
+    //bluetooth variables
+    private var centralManager: CBCentralManager!
+    private var piPeripheral: CBPeripheral!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +32,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
+        
+        //centralManager initialization for bluetooth
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     
@@ -99,5 +106,137 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
 
 
-}
+    //Bluetooth
 
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+           
+        switch central.state {
+            case .poweredOff:
+                print("Is Powered Off.")
+            case .poweredOn:
+                print("Is Powered On.")
+                startScanning()
+            case .unsupported:
+                print("Is Unsupported.")
+            case .unauthorized:
+                print("Is Unauthorized.")
+            case .unknown:
+                print("Unknown")
+            case .resetting:
+                print("Resetting")
+            @unknown default:
+                print("Error")
+            }
+         }
+       
+    func startScanning() -> Void {
+        // Start Scanning
+        centralManager?.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
+        centralManager?.connect(blePeripheral!, options: nil)
+    }
+
+       
+       /*
+        The implementation of this function performs the following actions:
+
+        Set the piPeripheral variable to the new peripheral found.
+        Set the peripheral's delegate to self (ViewController)
+        Printed the newly discovered peripheral's information in the console.
+        Stopped scanning for peripherals.
+        **/
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+
+        piPeripheral = peripheral
+
+        piPeripheral.delegate = self
+
+        print("Peripheral Discovered: \(peripheral)")
+        print("Peripheral name: \(peripheral.name)")
+        print ("Advertisement Data : \(advertisementData)")
+               
+        centralManager?.stopScan()
+        }
+       
+       //discovering services
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+            print("*******************************************************")
+
+            if ((error) != nil) {
+                print("Error discovering services: \(error!.localizedDescription)")
+                return
+            }
+            guard let services = peripheral.services else {
+                return
+            }
+            //We need to discover the all characteristic
+            for service in services {
+                peripheral.discoverCharacteristics(nil, for: service)
+            }
+            print("Discovered Services: \(services)")
+           }
+       
+       //discover characteristics
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+              
+                guard let characteristics = service.characteristics else {
+                return
+            }
+
+            print("Found \(characteristics.count) characteristics.")
+
+            for characteristic in characteristics {
+
+            if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
+
+                rxCharacteristic = characteristic
+
+                peripheral.setNotifyValue(true, for: rxCharacteristic!)
+                peripheral.readValue(for: characteristic)
+
+                print("RX Characteristic: \(rxCharacteristic.uuid)")
+            }
+
+            if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){
+                 
+                txCharacteristic = characteristic
+                 
+                print("TX Characteristic: \(txCharacteristic.uuid)")
+            }
+             }
+       }
+       //Reading Value of the Characteristic
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+
+            var characteristicASCIIValue = NSString()
+
+            guard characteristic == rxCharacteristic,
+
+            let characteristicValue = characteristic.value,
+            let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else { return }
+
+            characteristicASCIIValue = ASCIIstring
+
+            print("Value Recieved: \((characteristicASCIIValue as String))")
+    }
+       //Writing values to Characteristics
+    func writeOutgoingValue(data: String){
+             
+        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
+           
+        if let bluefruitPeripheral = bluefruitPeripheral {
+                 
+            if let txCharacteristic = txCharacteristic {
+                     
+            bluefruitPeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
+                }
+            }
+        }
+       
+       //disconnecting from Bluetooth device
+    func disconnectFromDevice () {
+        if blePeripheral != nil {
+            centralManager?.cancelPeripheralConnection(blePeripheral!)
+        }
+    }
+
+}
