@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreBluetooth
 
-class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDelegate, CBCentralManagerDelegate  {
+class ViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var distanceTraveledLabel: UILabel!
     
     @IBOutlet weak var startTrackingButton: UIButton!
@@ -111,32 +111,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
 
 
     //Bluetooth
-
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-           
-        switch central.state {
-            case .poweredOff:
-                print("Is Powered Off.")
-            case .poweredOn:
-                print("Is Powered On.")
-                startScanning()
-            case .unsupported:
-                print("Is Unsupported.")
-            case .unauthorized:
-                print("Is Unauthorized.")
-            case .unknown:
-                print("Unknown")
-            case .resetting:
-                print("Resetting")
-            @unknown default:
-                print("Error")
-            }
-         }
        
     func startScanning() -> Void {
-        // Start Scanning
-        centralManager?.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
-        centralManager?.connect(blePeripheral!, options: nil)
+      // Start Scanning
+      centralManager?.scanForPeripherals(withServices: [CBUUIDs.BLEService_UUID])
     }
 
        
@@ -155,13 +133,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
         piPeripheral.delegate = self
 
         print("Peripheral Discovered: \(peripheral)")
-        print("Peripheral name: \(peripheral.name)")
+          print("Peripheral name: \(peripheral.name)")
         print ("Advertisement Data : \(advertisementData)")
-               
+            
         centralManager?.stopScan()
-        }
-       
-       //discovering services
+        
+        centralManager?.connect(piPeripheral!, options: nil)
+       }
+      
+    
+    // method that is run when the peripheral is connected to
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+       piPeripheral.discoverServices([CBUUIDs.BLEService_UUID])
+    }
+    
+    // method runs when the services have been discovered
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
             print("*******************************************************")
 
@@ -177,70 +163,73 @@ class ViewController: UIViewController, CLLocationManagerDelegate,CBPeripheralDe
                 peripheral.discoverCharacteristics(nil, for: service)
             }
             print("Discovered Services: \(services)")
-           }
-       
-       //discover characteristics
+        }
+    
+    // method is called when peripheral characteristics have been disovered
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-              
-                guard let characteristics = service.characteristics else {
-                return
-            }
+           
+               guard let characteristics = service.characteristics else {
+              return
+          }
 
-            print("Found \(characteristics.count) characteristics.")
+          print("Found \(characteristics.count) characteristics.")
 
-            for characteristic in characteristics {
+          for characteristic in characteristics {
 
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Rx)  {
 
-                rxCharacteristic = characteristic
+              rxCharacteristic = characteristic
 
-                peripheral.setNotifyValue(true, for: rxCharacteristic!)
-                peripheral.readValue(for: characteristic)
+              peripheral.setNotifyValue(true, for: rxCharacteristic!)
+              peripheral.readValue(for: characteristic)
 
-                print("RX Characteristic: \(rxCharacteristic.uuid)")
+              print("RX Characteristic: \(rxCharacteristic.uuid)")
             }
 
             if characteristic.uuid.isEqual(CBUUIDs.BLE_Characteristic_uuid_Tx){
-                 
-                txCharacteristic = characteristic
-                 
-                print("TX Characteristic: \(txCharacteristic.uuid)")
+              
+              txCharacteristic = characteristic
+              
+              print("TX Characteristic: \(txCharacteristic.uuid)")
             }
-             }
-       }
-       //Reading Value of the Characteristic
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-
-            var characteristicASCIIValue = NSString()
-
-            guard characteristic == rxCharacteristic,
-
-            let characteristicValue = characteristic.value,
-            let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else { return }
-
-            characteristicASCIIValue = ASCIIstring
-
-            print("Value Recieved: \((characteristicASCIIValue as String))")
+          }
     }
-       //Writing values to Characteristics
-    func writeOutgoingValue(data: String){
-             
-        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
-           
-        if let piPeripheral = piPeripheral {
-                 
-            if let txCharacteristic = txCharacteristic {
-                     
-            piPeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
-                }
-            }
-        }
-       
-       //disconnecting from Bluetooth device
+    
+    
+    // function that allo=ws you to disconnect from the service
     func disconnectFromDevice () {
-        if blePeripheral != nil {
-            centralManager?.cancelPeripheralConnection(blePeripheral!)
+        if piPeripheral != nil {
+        centralManager?.cancelPeripheralConnection(piPeripheral!)
         }
-    }
+     }
+
+}
+
+
+extension ViewController: CBPeripheralDelegate {
+}
+
+extension ViewController: CBCentralManagerDelegate {
+
+  func centralManagerDidUpdateState(_ central: CBCentralManager) {
+    
+     switch central.state {
+          case .poweredOff:
+              print("Is Powered Off.")
+          case .poweredOn:
+              print("Is Powered On.")
+              startScanning()
+          case .unsupported:
+              print("Is Unsupported.")
+          case .unauthorized:
+          print("Is Unauthorized.")
+          case .unknown:
+              print("Unknown")
+          case .resetting:
+              print("Resetting")
+          @unknown default:
+            print("Error")
+          }
+  }
 
 }
