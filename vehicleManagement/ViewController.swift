@@ -41,6 +41,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
+    @IBAction func sendBLEMessage(_ sender: Any) {
+        
+        writeOutgoingValue(data: "hello bob")
+    }
     
     @IBAction func startLocationTrackingButton(_ sender: Any) {
         startLocationManager()
@@ -195,6 +199,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
           }
     }
     
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+     
+          var characteristicASCIIValue = NSString()
+     
+          guard characteristic == rxCharacteristic,
+     
+          let characteristicValue = characteristic.value,
+          let ASCIIstring = NSString(data: characteristicValue, encoding: String.Encoding.utf8.rawValue) else { return }
+     
+          characteristicASCIIValue = ASCIIstring
+     
+          print("Value Recieved: \((characteristicASCIIValue as String))")
+    }
+    
+    func writeOutgoingValue(data: String){
+          
+        let valueString = (data as NSString).data(using: String.Encoding.utf8.rawValue)
+        
+        if let piPeripheral = piPeripheral {
+              
+          if let txCharacteristic = txCharacteristic {
+                  
+            piPeripheral.writeValue(valueString!, for: txCharacteristic, type: CBCharacteristicWriteType.withResponse)
+              }
+          }
+      }
     
     // function that allo=ws you to disconnect from the service
     func disconnectFromDevice () {
