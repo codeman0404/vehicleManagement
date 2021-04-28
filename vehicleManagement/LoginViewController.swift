@@ -94,6 +94,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ViewController {
+            
+            let vc = segue.destination as? ViewController
+            vc?.vehicleName = vehicleUsedTextField.text!
+            
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         self.resignFirstResponder()

@@ -5,6 +5,7 @@
 //  Created by Cody Anderson and Lucas Duff on 4/18/21.
 //
 
+import FirebaseDatabase
 import UIKit
 import MapKit
 
@@ -14,18 +15,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var endTripButton: UIButton!
     
-    var vehicleName = "";
     
+    private let database = Database.database().reference()
+    var vehicleName = "";
     let geocoder = CLGeocoder()
     let locationManager = CLLocationManager()
     var startLocation: CLLocation!
     var lastLocation: CLLocation!
-    //var startDate: Date!
     var distanceTraveledThisTrip: Double = 0
     var numMeasurements = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(vehicleName)
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -52,40 +55,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         
             if let location = locations.last {
                 
-                let distanceMoved = lastLocation.distance(from: location)
+                
+                let coordinate: [String: Any] = [
+                        
+                    "latitude": location.coordinate.latitude,
+                    "longitude": location.coordinate.longitude
+                    
+                    ]
+                
+                self.database.child("cars").child(String(vehicleName)).setValue(coordinate)
+                
+                /*let distanceMoved = lastLocation.distance(from: location)
                 if (distanceMoved > 15){
                     distanceTraveledThisTrip += distanceMoved/1000.0
                    /* distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
                     */
+ 
+                */
                 }
-                
-                // attempt to geocode that coordinate
-              /*  geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-                    if error == nil {
-                        let firstLocation = placemarks?[0]
-                        
-                        print(firstLocation?.country)
-                        print(firstLocation?.locality)
-                        print(firstLocation?.administrativeArea)
-                        print(firstLocation?.thoroughfare)
-                        print(firstLocation?.subThoroughfare)
-                        
-                    }
-                    else {
-                     // An error occurred during geocoding.
-                        
-                    }
-                }) */
                 
             }
         }
-        
+       /*
         
         if (numMeasurements < 3){
             numMeasurements += 1;
         }
         lastLocation = locations.last!
         print(lastLocation.coordinate)
+ 
+        */
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
