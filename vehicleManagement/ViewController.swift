@@ -41,40 +41,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     @IBAction func startTrip(_ sender: Any) {
         startLocationManager()
         startTripButton.isEnabled = false
+        endTripButton.isEnabled = true
     }
     
     @IBAction func endTrip(_ sender: Any) {
         stopLocationManager()
         endTripButton.isEnabled = false
+        startTripButton.isEnabled = true
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
         
-        // skip the first few measurements to avoid getting bad data
-        if (lastLocation != nil) && (numMeasurements > 2) {
-        
-            if let location = locations.last {
-                
-                
-                let coordinate: [String: Any] = [
-                        
-                    "latitude": location.coordinate.latitude,
-                    "longitude": location.coordinate.longitude
+        if let location = locations.last {
+            
+            print(location.coordinate)
+            
+            let coordinate: [String: Any] = [
                     
-                    ]
+                "latitude": location.coordinate.latitude,
+                "longitude": location.coordinate.longitude
                 
-                self.database.child("cars").child(String(vehicleName)).setValue(coordinate)
-                
-                /*let distanceMoved = lastLocation.distance(from: location)
-                if (distanceMoved > 15){
-                    distanceTraveledThisTrip += distanceMoved/1000.0
-                   /* distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
-                    */
- 
+                ]
+            
+            print(coordinate)
+            
+            self.database.child("cars").child("Acura").child("coordinates").setValue(coordinate)
+            
+            /*let distanceMoved = lastLocation.distance(from: location)
+            if (distanceMoved > 15){
+                distanceTraveledThisTrip += distanceMoved/1000.0
+               /* distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
                 */
-                }
-                
+
+            */
             }
+            
         }
        /*
         
@@ -85,7 +86,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         print(lastLocation.coordinate)
  
         */
-    }
+    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
        if let error = error as? CLError, error.code == .denied {
