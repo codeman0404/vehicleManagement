@@ -7,12 +7,13 @@
 
 import UIKit
 import MapKit
-import CoreBluetooth
 
 class ViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var distanceTraveledLabel: UILabel!
     
     @IBOutlet weak var startTrackingButton: UIButton!
+    
+    private var vehicleName = "";
     
     let geocoder = CLGeocoder()
     let locationManager = CLLocationManager()
@@ -30,6 +31,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
+    }
+    
+    
+    @IBAction func startTrip(_ sender: Any) {
+        startLocationManager()
     }
     
     @IBAction func startLocationTrackingButton(_ sender: Any) {
