@@ -9,11 +9,10 @@ import UIKit
 import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate  {
-    @IBOutlet weak var distanceTraveledLabel: UILabel!
-    
-    @IBOutlet weak var startTrackingButton: UIButton!
     
     @IBOutlet weak var startTripButton: UIButton!
+    
+    @IBOutlet weak var endTripButton: UIButton!
     
     var vehicleName = "";
     
@@ -41,9 +40,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         startTripButton.isEnabled = false
     }
     
-    @IBAction func startLocationTrackingButton(_ sender: Any) {
-        startLocationManager()
-        startTrackingButton.isEnabled = false
+    @IBAction func endTrip(_ sender: Any) {
+        stopLocationManager()
+        endTripButton.isEnabled = false
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
@@ -56,7 +55,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
                 let distanceMoved = lastLocation.distance(from: location)
                 if (distanceMoved > 15){
                     distanceTraveledThisTrip += distanceMoved/1000.0
-                    distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
+                   /* distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
+                    */
                 }
                 
                 // attempt to geocode that coordinate

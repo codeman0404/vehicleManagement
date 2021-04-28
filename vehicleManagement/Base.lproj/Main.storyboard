@@ -103,37 +103,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Traveled Distance: 0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcV-zD-aew">
-                                <rect key="frame" x="71.5" y="437.5" width="271" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="271" id="n00-5N-wpV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="css-QA-Nqq">
-                                <rect key="frame" x="124.5" y="467" width="165" height="30"/>
-                                <state key="normal" title="Begin Location Tracking"/>
-                                <connections>
-                                    <action selector="startLocationTrackingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kRN-tf-Ent"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1d-cU-5AS">
-                                <rect key="frame" x="184" y="619" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="sendBLEMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kyt-iN-xaF"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QCI-ST-94d">
-                                <rect key="frame" x="277" y="237" width="57" height="30"/>
+                                <rect key="frame" x="285" y="433" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="End Trip"/>
+                                <connections>
+                                    <action selector="endTrip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mty-in-9EG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXq-lW-CPS">
-                                <rect key="frame" x="71" y="226" width="84" height="53"/>
+                                <rect key="frame" x="67" y="421" width="84" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Trip"/>
                                 <connections>
@@ -143,17 +122,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ZcV-zD-aew" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9iL-s0-HIR"/>
-                            <constraint firstItem="css-QA-Nqq" firstAttribute="top" secondItem="ZcV-zD-aew" secondAttribute="bottom" constant="8.5" id="Fch-Gt-3xn"/>
-                            <constraint firstItem="ZcV-zD-aew" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Vkn-Ps-DYq"/>
-                            <constraint firstItem="css-QA-Nqq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iFo-S2-ONw"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wg2-Uq-xD1"/>
                     <connections>
-                        <outlet property="distanceTraveledLabel" destination="ZcV-zD-aew" id="lag-n9-yiz"/>
-                        <outlet property="startTrackingButton" destination="css-QA-Nqq" id="7Wk-bR-K6e"/>
+                        <outlet property="endTripButton" destination="QCI-ST-94d" id="Uuu-3E-m9j"/>
                         <outlet property="startTripButton" destination="VXq-lW-CPS" id="CLB-Kr-YFa"/>
                     </connections>
                 </viewController>
