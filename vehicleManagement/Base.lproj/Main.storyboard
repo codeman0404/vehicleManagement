@@ -154,6 +154,7 @@
                     <connections>
                         <outlet property="distanceTraveledLabel" destination="ZcV-zD-aew" id="lag-n9-yiz"/>
                         <outlet property="startTrackingButton" destination="css-QA-Nqq" id="7Wk-bR-K6e"/>
+                        <outlet property="startTripButton" destination="VXq-lW-CPS" id="CLB-Kr-YFa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

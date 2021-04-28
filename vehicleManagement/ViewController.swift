@@ -13,7 +13,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var startTrackingButton: UIButton!
     
-    private var vehicleName = "";
+    @IBOutlet weak var startTripButton: UIButton!
+    
+    var vehicleName = "";
     
     let geocoder = CLGeocoder()
     let locationManager = CLLocationManager()
@@ -36,6 +38,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBAction func startTrip(_ sender: Any) {
         startLocationManager()
+        startTripButton.isEnabled = false
     }
     
     @IBAction func startLocationTrackingButton(_ sender: Any) {
