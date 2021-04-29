@@ -10,7 +10,6 @@
 		0E5338ECC309D822E1FB7406 /* Pods_vehicleManagementTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52F640D70B2EC8A28E93A01 /* Pods_vehicleManagementTests.framework */; };
 		2642C6728584C123363D31DA /* Pods_vehicleManagement_vehicleManagementUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCCA54148B5A79F9B13611B7 /* Pods_vehicleManagement_vehicleManagementUITests.framework */; };
 		8EF30F0C263A41E3005144D7 /* newCarControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF30F0B263A41E3005144D7 /* newCarControllerView.swift */; };
-		8EF30F11263A422C005144D7 /* carSelectorControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF30F10263A422C005144D7 /* carSelectorControllerView.swift */; };
 		D429DC922630DE74005EDDB0 /* NewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429DC912630DE74005EDDB0 /* NewAccountViewController.swift */; };
 		D44E411B262FA5E80030CC8A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D44E411A262FA5E80030CC8A /* GoogleService-Info.plist */; };
 		D4871E85262F548100628EAE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4871E84262F548100628EAE /* LoginViewController.swift */; };
@@ -49,7 +48,6 @@
 		43D2DBB2AF77A80794250951 /* Pods-vehicleManagement-vehicleManagementUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vehicleManagement-vehicleManagementUITests.release.xcconfig"; path = "Target Support Files/Pods-vehicleManagement-vehicleManagementUITests/Pods-vehicleManagement-vehicleManagementUITests.release.xcconfig"; sourceTree = "<group>"; };
 		77B89C76B5831A1E3F5AC6F6 /* Pods-vehicleManagementTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vehicleManagementTests.debug.xcconfig"; path = "Target Support Files/Pods-vehicleManagementTests/Pods-vehicleManagementTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8EF30F0B263A41E3005144D7 /* newCarControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newCarControllerView.swift; sourceTree = "<group>"; };
-		8EF30F10263A422C005144D7 /* carSelectorControllerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carSelectorControllerView.swift; sourceTree = "<group>"; };
 		B62877BFB7EB0F7502D2CFD7 /* Pods-vehicleManagement-vehicleManagementUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vehicleManagement-vehicleManagementUITests.debug.xcconfig"; path = "Target Support Files/Pods-vehicleManagement-vehicleManagementUITests/Pods-vehicleManagement-vehicleManagementUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B835FCA7C67FA9C1440AB6AD /* Pods_vehicleManagement.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vehicleManagement.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCCA54148B5A79F9B13611B7 /* Pods_vehicleManagement_vehicleManagementUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vehicleManagement_vehicleManagementUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,7 +146,6 @@
 				D4871E84262F548100628EAE /* LoginViewController.swift */,
 				D4C81A1E262CF31C000C5774 /* Main.storyboard */,
 				8EF30F0B263A41E3005144D7 /* newCarControllerView.swift */,
-				8EF30F10263A422C005144D7 /* carSelectorControllerView.swift */,
 				D429DC912630DE74005EDDB0 /* NewAccountViewController.swift */,
 				D4C81A24262CF31C000C5774 /* Assets.xcassets */,
 				D4C81A26262CF31C000C5774 /* LaunchScreen.storyboard */,
@@ -425,7 +422,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF30F11263A422C005144D7 /* carSelectorControllerView.swift in Sources */,
 				D4C81A1D262CF31C000C5774 /* ViewController.swift in Sources */,
 				D4C81A19262CF31C000C5774 /* AppDelegate.swift in Sources */,
 				D4C81A1B262CF31C000C5774 /* SceneDelegate.swift in Sources */,
