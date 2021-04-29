@@ -42,12 +42,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         startLocationManager()
         startTripButton.isEnabled = false
         endTripButton.isEnabled = true
+        self.database.child("cars").child("Acura").child("isDriving").setValue(true)
     }
     
     @IBAction func endTrip(_ sender: Any) {
         stopLocationManager()
         endTripButton.isEnabled = false
         startTripButton.isEnabled = true
+        self.database.child("cars").child("Acura").child("isDriving").setValue(false)
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
