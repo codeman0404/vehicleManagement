@@ -21,6 +21,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func login(_ sender: Any) {
         
+        print("trying to log in")
+        
         if let userName = self.userNameTextField.text {
             
             if let password = self.passwordTextField.text {
