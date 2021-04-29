@@ -24,7 +24,15 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
     var newDrivers: [String] = []
     @IBAction func addDriverFuc(_ sender: Any) {
         if let newDriver = self.newAuthorizedDriver.text {
-            newDrivers.append(newDriver)
+            self.database.child("accounts").child(newDriver).getData{ (error, snapshot) in
+                if let error = error {
+                    
+                    print("Error getting data \(error)")
+                    
+                } else if snapshot.exists() {
+                    self.newDrivers.append(newDriver)
+                }
+            }
         }
     }
     @IBAction func submitNewVehicleFunc(_ sender: Any) {
