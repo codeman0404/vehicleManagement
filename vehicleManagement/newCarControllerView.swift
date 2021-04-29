@@ -8,9 +8,19 @@
 import Foundation
 import FirebaseDatabase
 
-class newCarControllerView: UIViewController, UITextFieldDelegate {
-    private let database = Database.database().reference()
+class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userNames.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell2", for: indexPath)
+            cell.textLabel?.text = userNames[indexPath.row]
+            return cell
+    }
+    
+    private let database = Database.database().reference()
+    var userNames = [String]()
     var userName = ""
     var vehicles = [String]()
     
@@ -22,6 +32,8 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addDriver: UIButton!
     @IBOutlet weak var submitNewVehicle: UIButton!
     
+    @IBOutlet weak var acceptedNewDrivers: UITableView!
+    
     var newDrivers: [String] = []
     @IBAction func addDriverFuc(_ sender: Any) {
         if let newDriver = self.newAuthorizedDriver.text {
@@ -32,6 +44,9 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
                     
                 } else if snapshot.exists() {
                     self.newDrivers.append(newDriver)
+                    self.userNames.append(newDriver)
+                    self.acceptedNewDrivers.reloadData()
+                    self.newAuthorizedDriver.text = ""
                 }
             }
         }
@@ -96,6 +111,8 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
         newVehicleName.delegate = self
         newOdometer.delegate = self
         newAuthorizedDriver.delegate = self
+        acceptedNewDrivers.delegate = self
+        acceptedNewDrivers.dataSource = self
     }
     
 }
