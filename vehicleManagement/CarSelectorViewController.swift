@@ -15,6 +15,7 @@ class CarSelectorViewController: UIViewController, UITableViewDelegate, UITableV
     var user = ""
     private var vehicleChosen = ""
     
+    
     @IBAction func registerNewVehicle(_ sender: Any) {
         
         self.performSegue(withIdentifier: "toNewCarController", sender: self)
@@ -46,6 +47,9 @@ class CarSelectorViewController: UIViewController, UITableViewDelegate, UITableV
             
             let vc = segue.destination as? ViewController
             vc?.vehicle = vehicleChosen
+            vc?.vehiclesList = vehicles
+            vc?.user = user
+            
             
         } else if segue.destination is newCarControllerView {
             

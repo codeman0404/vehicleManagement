@@ -109,13 +109,42 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
         }
     }
     
+    @objc func textFieldDidChange(sender: UITextField){
+        
+        //print("veh name text field changing")
+        
+        let text = self.newVehicleName.text
+        let text2 = self.newOdometer.text
+        
+        if ((text == "") || ((text2 == ""))) {
+            submitNewVehicle.isEnabled = false
+        } else {
+            submitNewVehicle.isEnabled = true
+        }
+        
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        self.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        newVehicleName.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        newOdometer.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         newVehicleName.delegate = self
         newOdometer.delegate = self
         newAuthorizedDriver.delegate = self
         acceptedNewDrivers.delegate = self
         acceptedNewDrivers.dataSource = self
+        submitNewVehicle.isEnabled = false
     }
     
 }

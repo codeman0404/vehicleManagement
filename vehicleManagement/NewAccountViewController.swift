@@ -13,6 +13,7 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
     
     private let database = Database.database().reference()
     
+    @IBOutlet weak var registerNewAccountButton: UIButton!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -82,11 +83,32 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @objc func textFieldDidChange(sender: UITextField){
+        
+        //print("veh name text field changing")
+        
+        let text = self.userNameTextField.text
+        let text2 = self.passwordTextField.text
+        let text3 = self.confirmPasswordTextField.text
+        
+        if ((text == "") || (text2 == "") || (text3 == "")) {
+            registerNewAccountButton.isEnabled = false
+        } else {
+            registerNewAccountButton.isEnabled = true
+        }
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNameTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        confirmPasswordTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
+        registerNewAccountButton.isEnabled = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

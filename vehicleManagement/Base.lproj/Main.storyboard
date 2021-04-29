@@ -72,6 +72,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="hVu-3B-bND" id="g71-l9-8gU"/>
                         <outlet property="notificationLabel" destination="9BJ-rZ-7hO" id="oN5-eR-DUN"/>
                         <outlet property="passwordTextField" destination="ojn-jS-Hwi" id="o2m-7A-qcB"/>
                         <outlet property="userNameTextField" destination="FsV-om-ifZ" id="jOY-Xy-f1T"/>
@@ -107,9 +108,20 @@
                                     <action selector="startTrip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0js-v8-yp5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="La5-Mu-Vd1">
+                                <rect key="frame" x="38" y="44" width="21" height="22"/>
+                                <state key="normal" image="arrowshape.turn.up.backward" catalog="system"/>
+                                <connections>
+                                    <segue destination="rEw-PJ-ynr" kind="presentation" id="kWT-nm-E7H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="La5-Mu-Vd1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="38" id="hne-jP-r3u"/>
+                            <constraint firstItem="La5-Mu-Vd1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kbk-wf-ScM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Wg2-Uq-xD1"/>
                     <connections>
@@ -189,6 +201,7 @@
                         <outlet property="confirmPasswordTextField" destination="7u1-4g-oBC" id="ejU-1k-Mwn"/>
                         <outlet property="notificationLabel" destination="qsR-cA-CgT" id="Hes-0n-CYP"/>
                         <outlet property="passwordTextField" destination="Nkp-FK-gAZ" id="xzv-4v-QUQ"/>
+                        <outlet property="registerNewAccountButton" destination="xRa-lV-gw2" id="d0Q-QA-b6A"/>
                         <outlet property="userNameTextField" destination="W1v-If-Rgs" id="XNR-0U-OCj"/>
                         <segue destination="PQE-ra-4Fe" kind="presentation" identifier="returnToLogin" modalPresentationStyle="fullScreen" id="XgJ-Fg-DYw"/>
                     </connections>
@@ -376,9 +389,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yFw-lv-v1U"/>
+        <segue reference="Pxn-bs-k26"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrowshape.turn.up.backward" catalog="system" width="128" height="106"/>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -14,6 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     private let database = Database.database().reference()
     private var validVehiclesList = [String]()
     
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -94,6 +95,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.destination is CarSelectorViewController {
@@ -103,6 +106,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             vc?.user = self.userNameTextField.text!
             
         }
+    }
+    
+    @objc func textFieldDidChange(sender: UITextField){
+        
+        //print("veh name text field changing")
+        
+        let text = self.userNameTextField.text
+        let text2 = self.passwordTextField.text
+        
+        if ((text == "") || (text2 == "")) {
+            loginButton.isEnabled = false
+        } else {
+            loginButton.isEnabled = true
+        }
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -119,6 +138,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         userNameTextField.delegate = self
         passwordTextField.delegate = self
+        loginButton.isEnabled = false
+        userNameTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         
     }
 

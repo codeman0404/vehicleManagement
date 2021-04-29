@@ -15,6 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var endTripButton: UIButton!
     
     var vehicle = ""
+    var vehiclesList = [String]()
+    var user = ""
     private let database = Database.database().reference()
     var vehicleName = "";
     let geocoder = CLGeocoder()
@@ -108,5 +110,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     func stopLocationManager(){
         locationManager.stopUpdatingLocation()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is CarSelectorViewController {
+            
+            let vc = segue.destination as? CarSelectorViewController
+            vc?.vehicles = vehiclesList
+            vc?.user = user
+            
+        }
+    }
+    
 
 }
