@@ -7,10 +7,10 @@
 
 import Foundation
 
-class carSelectorControllerView: UIViewController, UITextFieldDelegate {
+class carSelectorControllerView// UIViewController, UITextFieldDelegate {
     
     
-    @IBOutlet weak var carTableView: UITableView!
+   // @IBOutlet weak var carTableView: UITableView!
     
-    
+{
 }

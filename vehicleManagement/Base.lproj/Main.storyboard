@@ -45,7 +45,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="PQE-ra-4Fe" eventType="touchUpInside" id="xWL-Rw-CRQ"/>
-                                    <segue destination="phl-cm-qXD" kind="presentation" modalPresentationStyle="fullScreen" id="QZb-pI-2qa"/>
+                                    <segue destination="phl-cm-qXD" kind="presentation" identifier="toTableView" modalPresentationStyle="fullScreen" id="QZb-pI-2qa"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZW-An-88N">
@@ -312,6 +312,9 @@
                                 <rect key="frame" x="212" y="456" width="73" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Driver"/>
+                                <connections>
+                                    <action selector="addDriverFuc:" destination="gKL-6M-hR3" eventType="touchUpInside" id="LYZ-UQ-53K"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUE-Ew-QIj">
                                 <rect key="frame" x="41" y="28" width="75" height="22"/>
@@ -326,6 +329,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="KtH-fy-36e"/>
+                    <connections>
+                        <outlet property="addDriver" destination="pGh-79-yQQ" id="Yig-Kc-Cnf"/>
+                        <outlet property="newAuthorizedDriver" destination="BTb-UA-o4q" id="Q0m-AG-1Xy"/>
+                        <outlet property="newOdometer" destination="DXS-LT-5Dx" id="5dK-ec-B1D"/>
+                        <outlet property="newVehicleName" destination="k3P-ME-n78" id="lwo-Q6-mjW"/>
+                        <outlet property="submitNewVehicle" destination="aBs-V8-PRD" id="xHn-uH-2sm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SdD-s4-DMc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -333,8 +343,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pJQ-nm-4xl"/>
-        <segue reference="U0p-Qr-YIF"/>
+        <segue reference="QZb-pI-2qa"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>
