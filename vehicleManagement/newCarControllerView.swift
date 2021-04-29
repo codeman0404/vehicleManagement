@@ -43,10 +43,13 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
                     print("Error getting data \(error)")
                     
                 } else if snapshot.exists() {
-                    self.newDrivers.append(newDriver)
-                    self.userNames.append(newDriver)
-                    self.acceptedNewDrivers.reloadData()
-                    self.newAuthorizedDriver.text = ""
+                   
+                    DispatchQueue.main.async {
+                        self.newDrivers.append(newDriver)
+                        self.userNames.append(newDriver)
+                        self.acceptedNewDrivers.reloadData()
+                        self.newAuthorizedDriver.text = ""
+                    }
                 }
             }
         }
