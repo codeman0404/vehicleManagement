@@ -12,10 +12,9 @@ import CryptoKit
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private let database = Database.database().reference()
-    
+    private var validVehiclesList = [String]()
     
     @IBOutlet weak var notificationLabel: UILabel!
-    @IBOutlet weak var vehicleUsedTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     
@@ -25,8 +24,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if let userName = self.userNameTextField.text {
             
             if let password = self.passwordTextField.text {
-                
-                if let vehicle = self.vehicleUsedTextField.text {
                     
                     database.child("accounts").child(String(userName)).getData{ (error, snapshot) in
                     
@@ -43,32 +40,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 let value = snapshot.value as? NSDictionary
                                 let returnedPassword = value?["password"] as? String ?? ""
                                 let validVehicles = value?["valid_vehicles"] as? NSDictionary
+                              
                                 
-                                let vehicleValid = validVehicles?.value(forKey: vehicle)
+                                if let keys = validVehicles?.allKeys{
+                                    for key in keys {
+                                        
+                                        let carAllowed = validVehicles![key]
+                                        
+                                        if ((carAllowed as! Bool) == true) {
+                                            
+                                            self.validVehiclesList.append(key as! String)
+                                            
+                                        }
+                                        
+                                     }
+                                }
                                 
-                                if (vehicleValid != nil){
-                            
-                            
-                                    // hash password and compare it agianst the password stored in firebase
-                                    let passwordData = Data(password.utf8)
-                                    let hashed = SHA256.hash(data: passwordData)
-                                    let hashString = hashed.compactMap { String(format: "%02x", $0) }.joined()
+                                // hash password and compare it agianst the password stored in firebase
+                                let passwordData = Data(password.utf8)
+                                let hashed = SHA256.hash(data: passwordData)
+                                let hashString = hashed.compactMap { String(format: "%02x", $0) }.joined()
                                     
                                     
                                     
-                                    if (hashString == returnedPassword) && (vehicleValid as! Bool){
+                                if (hashString == returnedPassword){
                                         
-                                        self.performSegue(withIdentifier: "distanceViewController", sender: self)
+                                    self.performSegue(withIdentifier: "toCarSelector", sender: self)
                                         
-                                    } else {
-                                        
-                                        self.notificationLabel.text = "incorrect username or password"
-                                    }
-                                    
                                 } else {
-                                    DispatchQueue.main.async {
-                                        self.notificationLabel.text = "Vehicle: " + vehicle + " doesn't exist"
-                                    }
+                                        
+                                    self.notificationLabel.text = "incorrect username or password"
                                 }
                             }
                         } else {
@@ -79,10 +80,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             
                         }
                     }
-                    
-                } else {
-                    print("error logging in")
-                }
                 
             } else {
                 
@@ -94,11 +91,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is ViewController {
+        
+        if segue.destination is CarSelectorViewController {
             
-            let vc = segue.destination as? ViewController
-            vc?.vehicleName = vehicleUsedTextField.text!
+            let vc = segue.destination as? CarSelectorViewController
+            vc?.vehicles = validVehiclesList
+            vc?.user = self.userNameTextField.text!
             
         }
     }
@@ -117,7 +117,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         userNameTextField.delegate = self
         passwordTextField.delegate = self
-        vehicleUsedTextField.delegate = self
         
     }
 

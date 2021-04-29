@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gKL-6M-hR3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PQE-ra-4Fe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,14 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Vehicle Being Used" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CZI-vJ-V0o">
-                                <rect key="frame" x="130.5" y="473" width="153" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="153" id="JUA-BL-abd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ojn-jS-Hwi">
                                 <rect key="frame" x="130.5" y="431" width="153" height="34"/>
                                 <constraints>
@@ -41,17 +33,10 @@
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVu-3B-bND">
-                                <rect key="frame" x="188" y="515" width="38" height="30"/>
+                                <rect key="frame" x="188" y="473" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="PQE-ra-4Fe" eventType="touchUpInside" id="xWL-Rw-CRQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZW-An-88N">
-                                <rect key="frame" x="136.5" y="553" width="141" height="30"/>
-                                <state key="normal" title="Create New Account"/>
-                                <connections>
-                                    <segue destination="3r4-TR-n25" kind="presentation" id="xhm-Wh-GlW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-rZ-7hO">
@@ -63,6 +48,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZW-An-88N">
+                                <rect key="frame" x="136.5" y="506" width="141" height="30"/>
+                                <state key="normal" title="Create New Account"/>
+                                <connections>
+                                    <segue destination="3r4-TR-n25" kind="presentation" id="xhm-Wh-GlW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hc4-iV-v2F"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,24 +62,21 @@
                             <constraint firstItem="ojn-jS-Hwi" firstAttribute="top" secondItem="FsV-om-ifZ" secondAttribute="bottom" constant="8" symbolic="YES" id="24h-bD-ROC"/>
                             <constraint firstItem="FsV-om-ifZ" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="3DL-Vg-zBk"/>
                             <constraint firstItem="9BJ-rZ-7hO" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="C28-K4-HIJ"/>
-                            <constraint firstItem="rZW-An-88N" firstAttribute="top" secondItem="hVu-3B-bND" secondAttribute="bottom" constant="8" symbolic="YES" id="CYJ-7a-uDv"/>
-                            <constraint firstItem="hVu-3B-bND" firstAttribute="top" secondItem="CZI-vJ-V0o" secondAttribute="bottom" constant="8" symbolic="YES" id="NJ8-Py-iK5"/>
                             <constraint firstItem="hVu-3B-bND" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="OYc-rv-qpW"/>
-                            <constraint firstItem="hVu-3B-bND" firstAttribute="top" secondItem="CZI-vJ-V0o" secondAttribute="bottom" constant="8" symbolic="YES" id="XdX-Yc-hwt"/>
                             <constraint firstItem="ojn-jS-Hwi" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="Z5d-68-dzz"/>
                             <constraint firstItem="9BJ-rZ-7hO" firstAttribute="top" secondItem="hc4-iV-v2F" secondAttribute="top" constant="18" id="aDh-6q-WJ2"/>
-                            <constraint firstItem="CZI-vJ-V0o" firstAttribute="top" secondItem="ojn-jS-Hwi" secondAttribute="bottom" constant="8" symbolic="YES" id="bJt-h9-fQw"/>
-                            <constraint firstItem="CZI-vJ-V0o" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="ego-UR-i7B"/>
                             <constraint firstItem="rZW-An-88N" firstAttribute="centerX" secondItem="uwe-WI-dpk" secondAttribute="centerX" id="fxy-p3-EYg"/>
+                            <constraint firstItem="rZW-An-88N" firstAttribute="top" secondItem="hVu-3B-bND" secondAttribute="bottom" constant="3" id="oLE-Yc-zI5"/>
                             <constraint firstItem="ojn-jS-Hwi" firstAttribute="centerY" secondItem="uwe-WI-dpk" secondAttribute="centerY" id="qxk-di-4sJ"/>
+                            <constraint firstItem="hVu-3B-bND" firstAttribute="top" secondItem="ojn-jS-Hwi" secondAttribute="bottom" constant="8" symbolic="YES" id="yxQ-QZ-UZC"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="notificationLabel" destination="9BJ-rZ-7hO" id="oN5-eR-DUN"/>
                         <outlet property="passwordTextField" destination="ojn-jS-Hwi" id="o2m-7A-qcB"/>
                         <outlet property="userNameTextField" destination="FsV-om-ifZ" id="jOY-Xy-f1T"/>
-                        <outlet property="vehicleUsedTextField" destination="CZI-vJ-V0o" id="ifL-Jd-SmO"/>
                         <outlet property="view" destination="uwe-WI-dpk" id="EcW-QG-gF0"/>
+                        <segue destination="rEw-PJ-ynr" kind="presentation" identifier="toCarSelector" modalPresentationStyle="fullScreen" id="Pxn-bs-k26"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sBG-uh-tuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -208,6 +197,57 @@
             </objects>
             <point key="canvasLocation" x="1076.8115942028987" y="-793.52678571428567"/>
         </scene>
+        <!--CarSelectorViewController-->
+        <scene sceneID="fYR-aI-tnd">
+            <objects>
+                <viewController title="CarSelectorViewController" modalPresentationStyle="fullScreen" id="rEw-PJ-ynr" customClass="CarSelectorViewController" customModule="vehicleManagement" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b3K-xf-ibe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HIb-rj-qFi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="727"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="746-3q-6fU">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="746-3q-6fU" id="12B-wf-pb1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="59L-3s-RDJ">
+                                <rect key="frame" x="134.5" y="801" width="145" height="30"/>
+                                <state key="normal" title="Register New Vehicle"/>
+                                <connections>
+                                    <action selector="registerNewVehicle:" destination="rEw-PJ-ynr" eventType="touchUpInside" id="iPU-4p-4zF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aKi-2a-XJh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aKi-2a-XJh" firstAttribute="bottom" secondItem="59L-3s-RDJ" secondAttribute="bottom" constant="31" id="OkK-Xx-ioe"/>
+                            <constraint firstItem="59L-3s-RDJ" firstAttribute="top" secondItem="HIb-rj-qFi" secondAttribute="bottom" constant="30" id="SJw-An-wr5"/>
+                            <constraint firstItem="HIb-rj-qFi" firstAttribute="top" secondItem="aKi-2a-XJh" secondAttribute="top" id="XWu-73-K2T"/>
+                            <constraint firstItem="HIb-rj-qFi" firstAttribute="trailing" secondItem="aKi-2a-XJh" secondAttribute="trailing" id="ZbB-CK-8uQ"/>
+                            <constraint firstItem="59L-3s-RDJ" firstAttribute="centerX" secondItem="b3K-xf-ibe" secondAttribute="centerX" id="gRE-zt-gx7"/>
+                            <constraint firstItem="HIb-rj-qFi" firstAttribute="leading" secondItem="aKi-2a-XJh" secondAttribute="leading" id="uW8-MH-D3c"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cartTable" destination="HIb-rj-qFi" id="pJc-DX-HXR"/>
+                        <segue destination="gKL-6M-hR3" kind="presentation" identifier="toNewCarController" modalPresentationStyle="fullScreen" id="0OL-KC-Gep"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toMainView" modalPresentationStyle="fullScreen" id="GRB-mS-zPO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5JF-rw-6ZT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2266.666666666667" y="-694.41964285714278"/>
+        </scene>
         <!--newCarController-->
         <scene sceneID="vpQ-JM-fd7">
             <objects>
@@ -271,14 +311,20 @@
                                     <action selector="addDriverFuc:" destination="gKL-6M-hR3" eventType="touchUpInside" id="LYZ-UQ-53K"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUE-Ew-QIj">
-                                <rect key="frame" x="41" y="28" width="75" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUE-Ew-QIj">
+                                <rect key="frame" x="31" y="44" width="75" height="22"/>
                                 <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
+                                <connections>
+                                    <segue destination="rEw-PJ-ynr" kind="presentation" modalPresentationStyle="fullScreen" id="yFw-lv-v1U"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yoI-na-4qf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PUE-Ew-QIj" firstAttribute="top" secondItem="yoI-na-4qf" secondAttribute="top" id="7nC-rI-cXd"/>
+                            <constraint firstItem="PUE-Ew-QIj" firstAttribute="leading" secondItem="yoI-na-4qf" secondAttribute="leading" constant="31" id="M4T-Wf-LOQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="KtH-fy-36e"/>
                     <connections>
@@ -295,7 +341,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XgJ-Fg-DYw"/>
+        <segue reference="yFw-lv-v1U"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.left" catalog="system" width="128" height="106"/>

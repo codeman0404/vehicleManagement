@@ -22,6 +22,7 @@
 		D4C81A28262CF31C000C5774 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C81A26262CF31C000C5774 /* LaunchScreen.storyboard */; };
 		D4C81A33262CF31C000C5774 /* vehicleManagementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81A32262CF31C000C5774 /* vehicleManagementTests.swift */; };
 		D4C81A3E262CF31C000C5774 /* vehicleManagementUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C81A3D262CF31C000C5774 /* vehicleManagementUITests.swift */; };
+		D4FDF681263AF67F00E869C3 /* CarSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FDF680263AF67F00E869C3 /* CarSelectorViewController.swift */; };
 		D62868ED032B856C970BDD4F /* Pods_vehicleManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B835FCA7C67FA9C1440AB6AD /* Pods_vehicleManagement.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		D4C81A39262CF31C000C5774 /* vehicleManagementUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vehicleManagementUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4C81A3D262CF31C000C5774 /* vehicleManagementUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vehicleManagementUITests.swift; sourceTree = "<group>"; };
 		D4C81A3F262CF31C000C5774 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4FDF680263AF67F00E869C3 /* CarSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSelectorViewController.swift; sourceTree = "<group>"; };
 		D52F640D70B2EC8A28E93A01 /* Pods_vehicleManagementTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_vehicleManagementTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE315B03A71EE98CD31E015C /* Pods-vehicleManagement.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vehicleManagement.release.xcconfig"; path = "Target Support Files/Pods-vehicleManagement/Pods-vehicleManagement.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 				D4C81A1C262CF31C000C5774 /* ViewController.swift */,
 				D4871E84262F548100628EAE /* LoginViewController.swift */,
 				D4C81A1E262CF31C000C5774 /* Main.storyboard */,
+				D4FDF680263AF67F00E869C3 /* CarSelectorViewController.swift */,
 				8EF30F0B263A41E3005144D7 /* newCarControllerView.swift */,
 				D429DC912630DE74005EDDB0 /* NewAccountViewController.swift */,
 				D4C81A24262CF31C000C5774 /* Assets.xcassets */,
@@ -422,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FDF681263AF67F00E869C3 /* CarSelectorViewController.swift in Sources */,
 				D4C81A1D262CF31C000C5774 /* ViewController.swift in Sources */,
 				D4C81A19262CF31C000C5774 /* AppDelegate.swift in Sources */,
 				D4C81A1B262CF31C000C5774 /* SceneDelegate.swift in Sources */,
@@ -606,14 +610,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UJ96436423;
+				DEVELOPMENT_TEAM = X227286R6N;
 				INFOPLIST_FILE = vehicleManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucasDuff.vehicleManagement;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodyAndersonvehicleManagement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,14 +631,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = UJ96436423;
+				DEVELOPMENT_TEAM = X227286R6N;
 				INFOPLIST_FILE = vehicleManagement/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.LucasDuff.vehicleManagement;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CodyAnderson.vehicleManagement;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

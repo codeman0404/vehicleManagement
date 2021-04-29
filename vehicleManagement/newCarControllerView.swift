@@ -11,7 +11,8 @@ import FirebaseDatabase
 class newCarControllerView: UIViewController, UITextFieldDelegate {
     private let database = Database.database().reference()
     
-    var userName = "Cody"
+    var userName = ""
+    var vehicles = [String]()
     
     @IBOutlet weak var newVehicleName: UITextField!
     
@@ -35,6 +36,7 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     @IBAction func submitNewVehicleFunc(_ sender: Any) {
         if let newVehicle = self.newVehicleName.text{
             if let newInitOdometer = self.newOdometer.text {
@@ -46,21 +48,28 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
                     } else if snapshot.exists() {
                         print("Vehicle already exists")
                     }else{
+                        
+                        // keep vehicles up to date
+                        self.vehicles.append(newVehicle)
+                        
                         self.database.child("accounts").child(String(self.userName)).child("valid_vehicles").child(newVehicle).setValue(true)
+                        
                         for driver in self.newDrivers{
                             self.database.child("accounts").child(driver).child("valid_vehicles").child(newVehicle).setValue(true)
                         }
+                        
                         let object: [String: Any] = [
                             "coordinates": [
                                 "latitude":0,
                                 "longitude":0
-                                ],
+                            ],
                             "fuel_level":50,
                             "isDriving":false,
                             "miles_since_clear":0,
                             "odometer":newInitOdometer,
                             "speed":0
-                            ]
+                        ]
+                        
                         self.database.child("cars").child(newVehicle).setValue(object)
                     }
                     
@@ -68,6 +77,17 @@ class newCarControllerView: UIViewController, UITextFieldDelegate {
                         
                 // self.database.child("accounts").child(String(userName)).
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination is CarSelectorViewController {
+            
+            let vc = segue.destination as? CarSelectorViewController
+            vc?.vehicles = vehicles
+            vc?.user = userName
+            
         }
     }
     

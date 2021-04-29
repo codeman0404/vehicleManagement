@@ -45,22 +45,12 @@ class NewAccountViewController: UIViewController, UITextFieldDelegate {
                                 
                             } else {
                                 
-                                // hash password and compare it agianst the password stored in firebase
+                                // hash password
                                 let passwordData = Data(password.utf8)
                                 let hashed = SHA256.hash(data: passwordData)
                                 let hashString = hashed.compactMap { String(format: "%02x", $0) }.joined()
                                 
-                                let object: [String: Any] = [
-                                    
-                                    "password": hashString,
-                                    "vehicles": [
-                                        
-                                        "acura": "1",
-                                        "scion": "1"
-                                    
-                                    ]
-                                    
-                                ]
+                                let object: [String: Any] = ["password": hashString]
                                 
                                 self.database.child("accounts").child(String(userName)).setValue(object)
                                 

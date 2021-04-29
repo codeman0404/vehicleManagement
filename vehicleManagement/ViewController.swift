@@ -12,10 +12,9 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var startTripButton: UIButton!
-    
     @IBOutlet weak var endTripButton: UIButton!
     
-    
+    var vehicle = ""
     private let database = Database.database().reference()
     var vehicleName = "";
     let geocoder = CLGeocoder()
