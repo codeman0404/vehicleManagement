@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseDatabase
 import CryptoKit
-import 
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
