@@ -281,8 +281,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUE-Ew-QIj">
-                                <rect key="frame" x="31" y="44" width="75" height="22"/>
-                                <state key="normal" title="Button" image="arrowshape.turn.up.left" catalog="system"/>
+                                <rect key="frame" x="31" y="44" width="21" height="22"/>
+                                <state key="normal" image="arrowshape.turn.up.left" catalog="system"/>
                                 <connections>
                                     <segue destination="rEw-PJ-ynr" kind="presentation" modalPresentationStyle="fullScreen" id="yFw-lv-v1U"/>
                                 </connections>
