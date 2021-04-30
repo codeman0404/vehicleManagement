@@ -26,6 +26,7 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
     
     @IBOutlet weak var newVehicleName: UITextField!
     
+    @IBOutlet weak var milesToOilTextfield: UITextField!
     @IBOutlet weak var newOdometer: UITextField!
     @IBOutlet weak var newAuthorizedDriver: UITextField!
     
@@ -66,7 +67,6 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
                     } else if snapshot.exists() {
                         print("Vehicle already exists")
                     }else{
-                        
                         // keep vehicles up to date
                         self.vehicles.append(newVehicle)
                         
@@ -75,20 +75,21 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
                         for driver in self.newDrivers{
                             self.database.child("accounts").child(driver).child("valid_vehicles").child(newVehicle).setValue(true)
                         }
-                        
-                        let object: [String: Any] = [
-                            "coordinates": [
-                                "latitude":0,
-                                "longitude":0
-                            ],
-                            "fuel_level":50,
-                            "isDriving":false,
-                            "miles_since_clear":0,
-                            "odometer":newInitOdometer,
-                            "speed":0
-                        ]
-                        
-                        self.database.child("cars").child(newVehicle).setValue(object)
+                        //if(newInitOdometer>=0 && newInitOdometer<=1000000){
+                            let object: [String: Any] = [
+                                "coordinates": [
+                                    "latitude":0,
+                                    "longitude":0
+                                ],
+                                "fuel_level":50,
+                                "isDriving":false,
+                                "miles_since_clear":0,
+                                "odometer":newInitOdometer,
+                                "speed":0,
+                                "milesToOil":3000
+                            ]
+                            self.database.child("cars").child(newVehicle).setValue(object)
+                        //}
                     }
                     
                 }
@@ -139,6 +140,7 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
         super.viewDidLoad()
         newVehicleName.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
         newOdometer.addTarget(self, action: #selector(self.textFieldDidChange), for: .editingChanged)
+        milesToOilTextfield.delegate = self
         newVehicleName.delegate = self
         newOdometer.delegate = self
         newAuthorizedDriver.delegate = self
