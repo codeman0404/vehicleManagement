@@ -9,6 +9,7 @@ import Foundation
 import FirebaseDatabase
 
 class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userNames.count
     }
@@ -34,13 +35,18 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
     @IBOutlet weak var acceptedNewDrivers: UITableView!
     
     var newDrivers: [String] = []
+    
     @IBAction func addDriverFuc(_ sender: Any) {
+        
         if let newDriver = self.newAuthorizedDriver.text {
+            
             self.database.child("accounts").child(newDriver).getData{ (error, snapshot) in
+                
                 if let error = error {
                     
                     print("Error getting data \(error)")
-                    
+                
+                // if this account exists, add them to the list of new drivers
                 } else if snapshot.exists() {
                    
                     DispatchQueue.main.async {
@@ -55,27 +61,45 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
     }
     
     @IBAction func submitNewVehicleFunc(_ sender: Any) {
+        
         if let newVehicle = self.newVehicleName.text{
+            
             if let newInitOdometer = self.newOdometer.text {
+                
                 self.database.child("cars").child(newVehicle).getData{ (error, snapshot) in
                     if let error = error {
                         
                         print("Error getting data \(error)")
                         
                     } else if snapshot.exists() {
+                        
                         print("Vehicle already exists")
+                        
                     }else{
                         
                         DispatchQueue.main.async {
+                            
                             // keep vehicles up to date
                             self.vehicles.append(newVehicle)
                             
+                            // add permissions for the owner of the vehicle
                             self.database.child("accounts").child(String(self.userName)).child("valid_vehicles").child(newVehicle).setValue(true)
                             
+                            var validDriverDict = [String: Bool]()
+                            validDriverDict[self.userName] = true
+                            
+                            
+                            // add permissions for each of the authorized drivers
                             for driver in self.newDrivers{
+                                
+                                validDriverDict[driver] = true
+                                
                                 self.database.child("accounts").child(driver).child("valid_vehicles").child(newVehicle).setValue(true)
                             }
-                            //if(newInitOdometer>=0 && newInitOdometer<=1000000){
+                            
+                            
+                            
+                            // build new vehicle object
                                 let object: [String: Any] = [
                                     "coordinates": [
                                         "latitude":0,
@@ -89,9 +113,15 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
                                     "milesToOil": Int(self.milesToOilChangeTextField.text!),
                                     "owner": self.userName,
                                     "DTC" : ["isEngineLightOn": false],
-                                    "lastKnownAddress": "unknown"
+                                    "lastKnownAddress": "unknown",
+                                    "authorized_users": validDriverDict
                                 ]
-                                self.database.child("cars").child(newVehicle).setValue(object)
+                            self.database.child("cars").child(newVehicle).setValue(object)
+                            
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "returnToCarSelector", sender: self)
+                            }
+                            
                         //}
                         }
                     }

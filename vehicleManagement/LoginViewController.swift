@@ -45,20 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 let validVehicles = value?["valid_vehicles"] as? NSDictionary
                               
                                 
-                                if let keys = validVehicles?.allKeys{
-                                    for key in keys {
-                                        
-                                        let carAllowed = validVehicles![key]
-                                        
-                                        if ((carAllowed as! Bool) == true) {
-                                            
-                                            self.validVehiclesList.append(key as! String)
-                                            
-                                        }
-                                        
-                                     }
-                                }
-                                
                                 // hash password and compare it agianst the password stored in firebase
                                 let passwordData = Data(password.utf8)
                                 let hashed = SHA256.hash(data: passwordData)
@@ -67,13 +53,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     
                                     
                                 if (hashString == returnedPassword){
-                                        
+                                       
+                                    
+                                    if let keys = validVehicles?.allKeys{
+                                        for key in keys {
+                                            
+                                            let carAllowed = validVehicles![key]
+                                            
+                                            if ((carAllowed as! Bool) == true) {
+                                                
+                                                self.validVehiclesList.append(key as! String)
+                                                
+                                            }
+                                            
+                                         }
+                                    }
+                                    
                                     self.performSegue(withIdentifier: "toCarSelector", sender: self)
                                         
-                                } else {
+                                    } else {
                                         
                                     self.notificationLabel.text = "incorrect username or password"
-                                }
+                                    }
                             }
                         } else {
                             

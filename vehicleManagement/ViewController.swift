@@ -13,10 +13,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var startTripButton: UIButton!
     @IBOutlet weak var endTripButton: UIButton!
+    @IBOutlet weak var updateVehicleButton: UIButton!
     
+    var userAllowedToUpdateVehicle = false
     var vehicle = ""
     var vehiclesList = [String]()
     var user = ""
+    var validUsersList = [String]()
     private let database = Database.database().reference()
     var vehicleName = "";
     let geocoder = CLGeocoder()
@@ -36,20 +39,89 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
+        self.database.child("cars").child(vehicle).child("owner").getData{ (error, snapshot) in
+            
+            if let error = error {
+                
+                
+                print(error)
+                
+            } else if snapshot.exists() {
+                
+                let vehicleOwner = snapshot.value as? String ?? ""
+                
+                print(vehicleOwner)
+                print(self.user)
+                
+                if (vehicleOwner == self.user){
+                    
+                    DispatchQueue.main.async {
+                        self.updateVehicleButton.isEnabled = true
+                        self.userAllowedToUpdateVehicle = true
+                    }
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        self.updateVehicleButton.isEnabled = false
+                    }
+                }
+                
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    self.updateVehicleButton.isEnabled = false
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    @IBAction func updateVehicleData(_ sender: Any) {
+        
+        self.database.child("cars").child(vehicle).child("authorized_users").getData{ (error, snapshot) in
+            
+            
+            if let error = error {
+                
+                print("Error getting data \(error)")
+                
+            } else if snapshot.exists() {
+               
+                DispatchQueue.main.async {
+                    let value = snapshot.value as? NSDictionary
+                    let users = value!.allKeys as! [String]
+                    self.validUsersList = users
+                    self.performSegue(withIdentifier: "toUpdateCarController", sender: self)
+                }
+                
+            }
+            
+        }
+        
     }
     
     
     @IBAction func startTrip(_ sender: Any) {
         startLocationManager()
+        updateVehicleButton.isEnabled = false
         startTripButton.isEnabled = false
         endTripButton.isEnabled = true
         self.database.child("cars").child(vehicle).child("isDriving").setValue(true)
     }
     
     @IBAction func endTrip(_ sender: Any) {
+        
         stopLocationManager()
         endTripButton.isEnabled = false
         startTripButton.isEnabled = true
+        
+        if (userAllowedToUpdateVehicle == true){
+            updateVehicleButton.isEnabled = true
+        }
+        
         self.database.child("cars").child(vehicle).child("isDriving").setValue(false)
         
         
@@ -130,6 +202,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
             let vc = segue.destination as? CarSelectorViewController
             vc?.vehicles = vehiclesList
             vc?.user = user
+            
+        } else if segue.destination is UpdateVehicleController {
+            
+            let vc = segue.destination as? UpdateVehicleController
+            vc?.user = user
+            vc?.authorizedUserList = validUsersList
+            vc?.vehicle = vehicle
+            vc?.vehicleList = vehiclesList
             
         }
     }
