@@ -94,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
             
             print(coordinate)
             
-            self.database.child("cars").child("Acura").child("coordinates").setValue(coordinate)
+            self.database.child("cars").child(self.vehicle).child("coordinates").setValue(coordinate)
             
             lastLocation = location
             
