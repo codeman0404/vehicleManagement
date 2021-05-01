@@ -88,7 +88,8 @@ class newCarControllerView: UIViewController, UITextFieldDelegate, UITableViewDe
                                     "speed":0,
                                     "milesToOil": Int(self.milesToOilChangeTextField.text!),
                                     "owner": self.userName,
-                                    "DTC" : ["isEngineLightOn": false]
+                                    "DTC" : ["isEngineLightOn": false],
+                                    "lastKnownAddress": "unknown"
                                 ]
                                 self.database.child("cars").child(newVehicle).setValue(object)
                         //}

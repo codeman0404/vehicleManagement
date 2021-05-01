@@ -51,6 +51,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
         endTripButton.isEnabled = false
         startTripButton.isEnabled = true
         self.database.child("cars").child(vehicle).child("isDriving").setValue(false)
+        
+        
+        geocoder.reverseGeocodeLocation(lastLocation, completionHandler: {
+            (placemarks, error) in
+            
+            if error == nil {
+                let location = placemarks?[0]
+                
+                let city = (location?.locality ?? "") as String
+                let postalCode = (location?.postalCode ?? "") as String
+                let street = (location?.thoroughfare ?? "") as String
+                let state = (location?.administrativeArea ?? "") as String
+                let houseNumber = (location?.subThoroughfare ?? "") as String
+                
+                let locationString = houseNumber + " " + street + ", " + city + ", " + state + " " + postalCode
+                
+                print(locationString)
+                
+                self.database.child("cars").child(self.vehicle).child("lastKnownAddress").setValue(locationString)
+                
+                
+            }
+            
+        })
+        
+        
     }
     
     func locationManager(_ manager: CLLocationManager,  didUpdateLocations locations: [CLLocation]) {
@@ -70,25 +96,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate  {
             
             self.database.child("cars").child("Acura").child("coordinates").setValue(coordinate)
             
-            /*let distanceMoved = lastLocation.distance(from: location)
-            if (distanceMoved > 15){
-                distanceTraveledThisTrip += distanceMoved/1000.0
-               /* distanceTraveledLabel.text = String(format: "Distance Traveled: %.3f km", distanceTraveledThisTrip)
-                */
-
-            */
-            }
+            lastLocation = location
             
         }
-       /*
-        
-        if (numMeasurements < 3){
-            numMeasurements += 1;
-        }
-        lastLocation = locations.last!
-        print(lastLocation.coordinate)
- 
-        */
+            
+    }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
